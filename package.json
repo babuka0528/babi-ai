@@ -1,14 +1,19 @@
+
 {
-  "name": "baby-ai-android",
+  "name": "babi-ai-android",
   "version": "1.0.0",
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "vite build"
+    "build": "vite build",
+    "start": "node server.js"
   },
   "dependencies": {
     "@capacitor/android": "^7.4.3",
-    "@capacitor/core": "^7.4.3"
+    "@capacitor/core": "^7.4.3",
+    "express": "^4.21.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7"
   },
   "devDependencies": {
     "@capacitor/cli": "^7.4.3",
