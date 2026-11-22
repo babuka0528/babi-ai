@@ -36,7 +36,23 @@ async function submit(text) {
   } catch (err) {
     pending.textContent = "Одоогоор AI серверт холбогдож чадсангүй. Backend-ээ асааж, API тохиргоогоо шалгана уу. (" + err.message + ")";
   } finally { send.disabled = false; input.focus(); }
-}
-form.addEventListener("submit", e => {e.preventDefault(); submit(input.value);});
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  console.log("SEND BUTTON WORKING");
+
+  const message = input.value.trim();
+
+  if (!message) {
+    alert("Мессеж хоосон байна!");
+    return;
+  }
+
+  try {
+    await submit(message);
+  } catch (error) {
+    alert("Илгээх алдаа: " + error.message);
+  }
+});
 input.addEventListener("keydown", e => {if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();form.requestSubmit();}});
 document.querySelectorAll(".suggestion").forEach(btn => btn.addEventListener("click",()=>submit(btn.textContent)));
