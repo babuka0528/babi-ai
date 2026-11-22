@@ -10,14 +10,16 @@ const send = document.querySelector("#send");
 const history = [];
 
 function addMessage(role, content) {
+  if (!chat) {
+    throw new Error("Чатны хэсэг олдсонгүй");
+  }
+
   if (welcome) welcome.hidden = true;
 
   const el = document.createElement("div");
   el.className = `message ${role}`;
   el.textContent = content;
-
   chat.appendChild(el);
-  el.scrollIntoView({ behavior: "smooth", block: "end" });
 
   return el;
 }
@@ -25,7 +27,14 @@ function addMessage(role, content) {
 async function submit(text) {
   const message = text.trim();
 
-  if (!message || send.disabled) return;
+  if (!message) return;
+
+  if (!send || !input || !chat) {
+    alert("Аппын HTML элемент олдсонгүй.");
+    return;
+  }
+
+  if (send.disabled) return;
 
   addMessage("user", message);
   history.push({ role: "user", content: message });
@@ -33,11 +42,9 @@ async function submit(text) {
   input.value = "";
   send.disabled = true;
 
-  const pending = addMessage("assistant", "Бодож байна...");
+  const pending = addMessage("assistant", "Сервертэй холбогдож байна...");
 
   try {
-    console.log("Sending request to Babi AI");
-
     const response = await fetch(`${API_BASE}/api/chat`, {
       method: "POST",
       headers: {
@@ -59,12 +66,9 @@ async function submit(text) {
       content: pending.textContent
     });
 
-  } catch (err) {
-    console.error("Babi AI error:", err);
-
-    pending.textContent =
-      "Алдаа: " + err.message;
-
+  } catch (error) {
+    console.error("Babi AI:", error);
+    pending.textContent = "Холболтын алдаа: " + error.message;
   } finally {
     send.disabled = false;
     input.focus();
@@ -72,21 +76,26 @@ async function submit(text) {
 }
 
 if (form) {
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
     submit(input.value);
   });
+} else {
+  alert("chat-form олдсонгүй");
 }
 
-if (input) {
-  input.addEventListener("keydown", (e) => {
-    if (e.key === "Enter" && !e.shiftKey) {
-      e.preventDefault();
+if (input && form) {
+  input.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" && !event.shiftKey) {
+      event.preventDefault();
       form.requestSubmit();
     }
   });
 }
 
-document.querySelectorAll(".suggestion").forEach((btn) => {
-  btn.addEventListener("click", () => submit(btn.textContent));
+document.querySelectorAll(".suggestion").forEach((button) => {
+  button.addEventListener("click", () => {
+    submit(button.textContent);
+  });
 });
+
