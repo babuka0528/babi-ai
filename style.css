@@ -1,14 +1,222 @@
-:root{color-scheme:dark;--bg:#0b1020;--panel:#141b31;--line:#26304c;--text:#f4f6ff;--muted:#a4aec9;--accent:#8b7cff;--accent2:#55d6c2}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% -15%,#26305b 0,transparent 48%),var(--bg);color:var(--text);font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;min-height:100vh}
-.shell{max-width:850px;margin:auto;min-height:100vh;display:flex;flex-direction:column;padding:20px}
-.topbar{display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line);padding:8px 0 18px}
-.brand-mark{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(135deg,var(--accent),var(--accent2));font-weight:900;font-size:22px;color:#101426}
-.brand{font-weight:800;letter-spacing:.08em}.subbrand{font-size:12px;color:var(--muted)}.status{margin-left:auto;color:var(--muted);font-size:12px}.status i{display:inline-block;width:7px;height:7px;background:#55d6a4;border-radius:50%;margin-right:6px}
-.welcome{text-align:center;margin:auto 0 28px;padding:36px 10px 10px}.orb{margin:auto;width:68px;height:68px;border-radius:22px;display:grid;place-items:center;background:linear-gradient(135deg,#7765ff,#41d4c2);font-size:34px;box-shadow:0 10px 45px #7665ff55}
-h1{font-size:clamp(24px,5vw,36px);margin:20px 0 6px}.welcome p{color:var(--muted);margin:0 0 22px}.suggestions{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}.suggestion{border:1px solid var(--line);background:#151d35;color:#dce2ff;border-radius:999px;padding:9px 13px;cursor:pointer}
-.chat{display:flex;flex-direction:column;gap:14px;padding:8px 0 20px}.message{max-width:85%;padding:13px 16px;border-radius:18px;white-space:pre-wrap;overflow-wrap:anywhere}.user{align-self:flex-end;background:#6358c9;border-bottom-right-radius:5px}.assistant{align-self:flex-start;background:var(--panel);border:1px solid var(--line);border-bottom-left-radius:5px}
-.composer{position:sticky;bottom:8px;display:flex;gap:10px;padding:10px;background:#141b31;border:1px solid var(--line);border-radius:20px;box-shadow:0 12px 40px #0006}
-textarea{flex:1;resize:none;max-height:140px;border:0;outline:0;background:transparent;color:var(--text);font:inherit;padding:8px}
-#send{width:44px;height:44px;border:0;border-radius:14px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#101426;font-size:22px;font-weight:800;cursor:pointer}
-#send:disabled{opacity:.5;cursor:wait}footer{text-align:center;color:#77819d;font-size:11px;padding:12px}
-@media(max-width:520px){.shell{padding:14px}.welcome{padding-top:22px}.message{max-width:94%}}
+
+:root {
+  color-scheme: dark;
+  --bg: #11100f;
+  --panel: #211e1b;
+  --line: #403a35;
+  --text: #f2eee9;
+  --muted: #a69b90;
+  --accent: #a18b78;
+  --accent2: #76685d;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(ellipse at 50% -15%, #40372f 0, transparent 48%),
+    var(--bg);
+  color: var(--text);
+  font: 16px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif;
+  min-height: 100vh;
+}
+
+.shell {
+  max-width: 850px;
+  margin: auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid var(--line);
+  padding: 8px 0 18px;
+}
+
+.brand-mark {
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  font-weight: 900;
+  font-size: 22px;
+  color: #171412;
+}
+
+.brand {
+  font-weight: 800;
+  letter-spacing: .08em;
+}
+
+.subbrand {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.status {
+  margin-left: auto;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.status i {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  background: #8d9a79;
+  border-radius: 50%;
+  margin-right: 6px;
+}
+
+.welcome {
+  text-align: center;
+  margin: auto 0 28px;
+  padding: 36px 10px 10px;
+}
+
+.orb {
+  margin: auto;
+  width: 68px;
+  height: 68px;
+  border-radius: 22px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, #9c8875, #5e5148);
+  font-size: 34px;
+  box-shadow: 0 10px 45px #8b786044;
+}
+
+h1 {
+  font-size: clamp(24px, 5vw, 36px);
+  margin: 20px 0 6px;
+}
+
+.welcome p {
+  color: var(--muted);
+  margin: 0 0 22px;
+}
+
+.suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+
+.suggestion {
+  border: 1px solid var(--line);
+  background: #292521;
+  color: #e5ddd4;
+  border-radius: 999px;
+  padding: 9px 13px;
+  cursor: pointer;
+}
+
+.suggestion:active {
+  background: #40372f;
+}
+
+.chat {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 8px 0 20px;
+}
+
+.message {
+  max-width: 85%;
+  padding: 13px 16px;
+  border-radius: 18px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.user {
+  align-self: flex-end;
+  background: #716052;
+  color: #fff;
+  border-bottom-right-radius: 5px;
+}
+
+.assistant {
+  align-self: flex-start;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-bottom-left-radius: 5px;
+}
+
+.composer {
+  position: sticky;
+  bottom: 8px;
+  display: flex;
+  gap: 10px;
+  padding: 10px;
+  background: #211e1b;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  box-shadow: 0 12px 40px #0008;
+}
+
+textarea {
+  flex: 1;
+  resize: none;
+  max-height: 140px;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  padding: 8px;
+}
+
+textarea::placeholder {
+  color: #91857a;
+}
+
+#send {
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #a18b78, #76685d);
+  color: #171412;
+  font-size: 22px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+#send:disabled {
+  opacity: .5;
+  cursor: wait;
+}
+
+footer {
+  text-align: center;
+  color: #81776e;
+  font-size: 11px;
+  padding: 12px;
+}
+
+@media(max-width:520px) {
+  .shell {
+    padding: 14px;
+  }
+
+  .welcome {
+    padding-top: 22px;
+  }
+
+  .message {
+    max-width: 94%;
+  }
+}
