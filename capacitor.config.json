@@ -1,6 +1,6 @@
 {
   "appId": "mn.babyai.app",
-  "appName": "BABY AI",
+  "appName": "BABI AI",
   "webDir": "dist",
   "server": {
     "androidScheme": "https"
