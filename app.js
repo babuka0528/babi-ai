@@ -1,5 +1,5 @@
 // Set this to your deployed backend URL for production.
-const API_BASE = "http://localhost:8787";
+const API_BASE = "https://babi-ai.onrender.com";
 const form = document.querySelector("#chat-form");
 const input = document.querySelector("#prompt");
 const chat = document.querySelector("#chat");
