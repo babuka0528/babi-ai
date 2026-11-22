@@ -109,8 +109,8 @@ app.post("/api/chat", async (req, res) => {
   }
 });
 
-const port = Number(process.env.PORT || 8787);
+const port = Number(process.env.PORT || 10000);
 
-app.listen(port, () => {
-  console.log(`Babi AI server listening on ${port}`);
+app.listen(port, "0.0.0.0", () => {
+  console.log(`Babi AI server listening on 0.0.0.0:${port}`);
 });
